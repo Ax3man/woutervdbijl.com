@@ -1,0 +1,124 @@
+---
+title: Demandt et al. - Stickleback groups and parasite infection
+author: ~
+date: '2018-07-04'
+slug: demandt-et-al-stickleback-groups-and-parasite-infection
+categories: []
+tags: []
+header:
+  caption: ''
+  image: ''
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+http://rspb.royalsocietypublishing.org/content/285/1881/20180956
+
+```{r packages, message=FALSE}
+library(tidyverse)
+library(lmerTest)
+library(emmeans)
+```
+
+```{r data_load, results='hide'}
+url <- 'https://datadryad.org/bitstream/handle/10255/dryad.178683/Demandt_et_al_data.xlsx?sequence=1'
+httr::GET(url, httr::write_disk(tf <- tempfile(fileext = ".xlsx")))
+d <- readxl::read_excel(tf)
+unlink(tf)
+```
+
+```{r data_preprocess}
+d2 <- d %>% 
+  transmute(
+    group = factor(GroupID),
+    fish = factor(FishID),
+    treatment = factor(TreatmentgroupMS, levels = c('6u/0i', '4u/2i', '2u/4i', '0u/6i'),
+                       labels = c('6u', '4u/2i', '2u/4i', '6i')),
+    infected = factor(Infected, c('no', 'Yes'), c('uninf', 'inf')),
+    time_dangerous = `Time spend in dangerous zone (sec)`,
+    period = factor(`BeforeOrAfter bird strike`, c('Before', 'After'), c('before', 'after')),
+    escape_zone = factor(`Escape zone`, c('Safe zone', 'Dangerous zone'), c('safe', 'dangerous'))
+  )
+
+d2
+```
+
+```{r}
+d3 <- filter(d2, period == 'after')
+```
+
+###Analysis 1: immediate escape
+
+```{r recreate_fig2}
+ggplot(d3, aes(infected, escape_zone, fill = infected, group = infected)) +
+  geom_violin(scale = 'count')  +
+  geom_jitter(height = 0, width = 0.2, alpha = 0.3) +
+  facet_grid(~treatment) +
+  scale_y_discrete(expand = c(0.1, 0)) +
+  scale_fill_manual(values = c('white', 'grey50')) +
+  labs(x = 'infection status', y = 'escape zone', fill = NULL) +
+  theme(legend.position = 'bottom')
+```
+
+```{r}
+ggplot(d3, aes(infected, as.numeric(escape_zone) - 1, group = infected)) +
+  stat_summary(fun.data = 'mean_cl_boot', size = 1.5, fatten = 2.5) +
+  facet_grid(~treatment, scales = 'free_x', space = 'free_x') +
+  ylim(0, 1) +
+  labs(x = 'infection status', y = 'fraction with dangerous escape')
+```
+
+```{r}
+ggplot(d3, aes(treatment, as.numeric(escape_zone) - 1, color = infected)) +
+  stat_summary(fun.data = 'mean_cl_boot', size = 1.5, fatten = 2.5, 
+               position =  position_dodge(width = 0.3)) +
+  scale_color_manual(values = c('black', 'grey50')) +
+  ylim(0, 1) +
+  labs(x = 'group composition', y = 'fraction that lacked escape', color = 'infection status')
+```
+
+```{r}
+fm1 <- glmer(escape_zone ~ treatment * infected + (1 | group), d3, 'binomial')
+fm2 <- glmer(escape_zone ~ treatment + infected + (1 | group), d3, 'binomial')
+AIC(fm1, fm2)
+
+(pairwise <- emmeans(fm1, ~treatment | infected, contr = 'pairwise')$contrast)
+```
+
+###Analysis 2: zone use after simulated attack
+
+```{r}
+ggplot(d2, aes(treatment, time_dangerous, fill = infected)) +
+  geom_boxplot(position = position_dodge(0.75, preserve = 'single'))  +
+  geom_point(alpha = 0.3, position = position_dodge(0.75)) +
+  geom_point(shape = 'X', stat = 'summary', fun.y = mean, position = position_dodge(0.75),
+             size = 3) +
+  facet_grid(~period) +
+  scale_fill_manual(values = c('white', 'grey50')) +
+  labs(x = 'treatment', y = 'time spent in dangerous zone', fill = NULL) +
+  theme(legend.position = 'bottom')
+```
+
+```{r}
+ggplot(d2, aes(treatment, time_dangerous, fill = period)) +
+  geom_violin(alpha = 0.3, col = NA) +
+  stat_summary(fun.data = 'mean_cl_boot', position = position_dodge(0.9)) +
+  facet_grid(~infected, scales = 'free') +
+  #scale_fill_manual(values = c('white', 'grey50')) +
+  labs(x = 'infection status', y = 'escape zone', fill = NULL) +
+  theme(legend.position = 'bottom')
+```
+
+```{r}
+fm3 <- lmer(time_dangerous ~ treatment * period * infected + (period|group) + (1|fish), 
+            d2, REML = FALSE)
+fm4 <- lmer(time_dangerous ~ (treatment + period + infected)^2 + (period|group) + (1|fish), 
+            d2, REML = FALSE)
+AIC(fm3, fm4) %>% arrange(AIC) %>% mutate(dAIC = AIC - first(AIC))
+
+anova(fm3)
+emmeans(fm3, ~treatment*infected | period)
+```
+
