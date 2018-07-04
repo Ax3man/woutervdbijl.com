@@ -14,10 +14,10 @@ header:
 
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>I’ll start of these blogposts (see <a href="/post/blog-goals-and-introduction/index.html">here</a> for a more general introduction) with an interesting paper that recently came in Proceedings B, by Nicolle Demandt, Benedikt Saus and others. Briefly, the study looks at how the behavior of stickleback fish changes when animals get infected with tape worms. Now we already know that some pariste infections can change behavior, for example by making animals less risk-averse. But in this paper the authors also look at how the behavior of non-infected fish changes when others in the group are infected.</p>
-<p>The experiment involves infection some fish with tape worms, while other fish are kept healthy. The authors then let them swim together in groups of six fish, with different numbers of healty or infected fish. This results in frou treatments: six uninfected sticklebacks (6u), four uninfected and two infected sticklebacks (4u/2i), two uninfected and four infected sticklebacks (2u/4i) and six infected sticklebacks (6i).</p>
+<p>I’ll start of these blog posts (see <a href="/post/blog-goals-and-introduction/index.html">here</a> for a more general introduction) with an interesting paper that recently came in Proceedings B, by Nicolle Demandt, Benedikt Saus and others. Briefly, the study looks at how the behavior of stickleback fish changes when animals get infected with tape worms. Now we already know that some parasite infections can change behavior, for example by making animals less risk-averse. But in this paper the authors also look at how the behavior of non-infected fish changes when others in the group are infected.</p>
+<p>The experiment involves infection some fish with tape worms, while other fish are kept healthy. The authors then let them swim together in groups of six fish, with different numbers of healthy or infected fish. This results in four treatments: six uninfected sticklebacks (6u), four uninfected and two infected sticklebacks (4u/2i), two uninfected and four infected sticklebacks (2u/4i) and six infected sticklebacks (6i).</p>
 <p>They then expose these groups to a simulated bird attack, and measure their behavior before, during and after the attack.</p>
-<p>For this post, I will just focus on the result presented in figure 2, which involves the escape from the simulated attack. The other analysis about time usage is bascially very similar. This statement from the abstract is the topic here:</p>
+<p>For this post, I will just focus on the result presented in figure 2, which involves the escape from the simulated attack. The other analysis about time usage is basically very similar. This statement from the abstract is the topic here:</p>
 <blockquote>
 <p><em>“… individuals in groups with only infected members showed lower escape responses and higher risk-taking than individuals from groups with only uninfected members. Importantly, uninfected individuals adjusted their risk-taking behaviour to the number of infected group members, taking more risk with an increasing number of infected group members.”</em></p>
 </blockquote>
@@ -25,15 +25,15 @@ header:
 </div>
 <div id="short-conclusion" class="section level1">
 <h1>Short conclusion</h1>
-<p>I chose a different analysis strategy, using a single model instead of two. Regardless, the results are robust against this choice, and the conclusions hold.</p>
+<p>I chose a different analysis strategy, using a single model instead of four. Regardless, the results are robust against this choice, and to me it seems that the conclusions hold.</p>
 <p>Overall, the data was easily available (although in .xlsx format), and the figures and analyses were easy to reproduce!</p>
-<p>I did find the figures to be not so great, and I would have made some adjustments, but that can be taste.</p>
+<p>I did find the figures to be not so great, and I would have made some adjustments.</p>
 </div>
 <div id="analysis" class="section level1">
 <h1>Analysis</h1>
 <div id="packages-and-data" class="section level3">
 <h3>Packages and data</h3>
-<p>I’ll start by loading some pacakges for general convinience and mixed modelling.</p>
+<p>I’ll start by loading some packages for general convenience and mixed modelling.</p>
 <pre class="r"><code>library(tidyverse)
 library(lmerTest)
 library(emmeans)</code></pre>
@@ -42,7 +42,7 @@ library(emmeans)</code></pre>
 tmp &lt;- httr::GET(url, httr::write_disk(tf &lt;- tempfile(fileext = &quot;.xlsx&quot;)))
 d &lt;- readxl::read_excel(tf)
 unlink(tf)</code></pre>
-<p>This works fine, but the colomn names are long and inconsistent, and not everything is coded with the same levels as the figures. So I start of by renaming and relabelling the data.</p>
+<p>This works fine, but the column names are long and inconsistent, and not everything is coded with the same levels as the figures. So I start of by renaming and relabeling the data.</p>
 <pre class="r"><code>d2 &lt;- d %&gt;% 
   transmute(
     group = factor(GroupID),
@@ -75,7 +75,7 @@ unlink(tf)</code></pre>
 </div>
 <div id="analysis-escape-zone" class="section level3">
 <h3>Analysis: escape zone</h3>
-<p>Figure 2 in the paper looks at whether the fish escaped towards the safe lower part of the tank during the simluated attack, or whether they remained exposed by staying in the top section where they would be reachable by the bird predator.</p>
+<p>Figure 2 in the paper looks at whether the fish escaped towards the safe lower part of the tank during the simulated attack, or whether they remained exposed by staying in the top section where they would be reachable by the bird predator.</p>
 <p>We can quite easily recreate figure 2:</p>
 <pre class="r"><code>ggplot(d3, aes(infected, escape_zone, fill = infected, group = infected)) +
   geom_violin(scale = &#39;count&#39;)  +
@@ -86,8 +86,8 @@ unlink(tf)</code></pre>
   labs(x = &#39;infection status&#39;, y = &#39;escape zone&#39;, fill = NULL) +
   theme(legend.position = &#39;bottom&#39;)</code></pre>
 <p><img src="/post/2018-07-04-demandt-et-al-stickleback-groups-and-parasite-infection_files/figure-html/recreate_fig2-1.png" width="672" /></p>
-<p>However, I think this figure is less than ideal. Violin plots don’t make a lot of sense here. They are meant to show continious distributions, but here they are applied to binary data. It is also hard to see what the average response would be. I would probably rather use simple means and confidence intervals. One could calculate the binomial confidence interval (<code>binom.test</code> gives them, for example), but bootstrapped confidence intervals will also do, and are really easy with <code>ggplot2</code>.</p>
-<p>I also think it is unneccesary to show the non-existing groups (i.e. there are no infected fish in the 6u treatment).</p>
+<p>However, I think this figure is less than ideal. Violin plots don’t make a lot of sense here. They are meant to show continuous distributions, but here they are applied to binary data. It is also hard to see what the average response would be. I would probably rather use simple means and confidence intervals. One could calculate the binomial confidence interval (<code>binom.test</code> gives them, for example), but bootstrapped confidence intervals will also do, and are really easy with <code>ggplot2</code>.</p>
+<p>I also think it is unnecessary to show the non-existing groups (i.e. there are no infected fish in the 6u treatment).</p>
 <pre class="r"><code>ggplot(d3, aes(infected, as.numeric(escape_zone) - 1, group = infected)) +
   stat_summary(fun.data = &#39;mean_cl_boot&#39;, size = 1.5, fatten = 2.5) +
   facet_grid(~treatment, scales = &#39;free_x&#39;, space = &#39;free_x&#39;) +
@@ -103,11 +103,11 @@ unlink(tf)</code></pre>
   ylim(0, 1) +
   labs(x = &#39;group composition&#39;, y = &#39;fraction that lacked escape&#39;, color = &#39;infection status&#39;)</code></pre>
 <p><img src="/post/2018-07-04-demandt-et-al-stickleback-groups-and-parasite-infection_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>So clearly, to analyze the escape behavior we will need a binomial model (there are two possbile escape zones). And we will need to include a random effect for group id since multiple fish per group were observed, but they are not indepedent. So a generalizer mixed model it is.</p>
+<p>So clearly, to analyze the escape behavior we will need a binomial model (there are two possible escape zones). And we will need to include a random effect for group id since multiple fish per group were observed, but they are not independent. So a generalized mixed model it is.</p>
 <pre class="r"><code>fm1 &lt;- glmer(escape_zone ~ treatment * infected + (1 | group), d3, &#39;binomial&#39;)</code></pre>
 <pre><code>## fixed-effect model matrix is rank deficient so dropping 2 columns / coefficients</code></pre>
 <p>This model generates a message about dropping two coefficients. This makes sense, the effect of infection status cannot be estimated in the groups of only infected or non-infected fish.</p>
-<p>We should first assess wehther the data supports the inclusion of the interaction term. I do that by fittin the model without the interaction, and comparing AICs.</p>
+<p>We should first assess whether the data supports the inclusion of the interaction term. I do that by fitting the model without the interaction, and comparing AICs.</p>
 <pre class="r"><code>fm2 &lt;- update(fm1, . ~ . -treatment:infected)
 AIC(fm1, fm2)</code></pre>
 <pre><code>##     df      AIC
@@ -120,7 +120,7 @@ AIC(fm1, fm2)</code></pre>
 ## treatment           3 13.4486  4.4829  4.4829
 ## infected            1  3.4544  3.4544  3.4544
 ## treatment:infected  1  5.0999  5.0999  5.0999</code></pre>
-<p>There are no p-values given here, but p-values are available for the individual coefficents, see <code>coef(summary(fm1))</code>.</p>
+<p>There are no p-values given here, but p-values are available for the individual coefficients, see <code>coef(summary(fm1))</code>.</p>
 <p>So the escape behavior depends on both the infection status and group composition Two immediate follow-up questions would be if infected fish decrease their risk-taking when grouped with healthy fish, and if healthy fish increase their risk when swimming with infected fish.</p>
 <p>This can be answered by looking at some post-hoc comparisons. Specifically we want to look at the contrast between group composition, within each infection status. The <code>emmeans</code> package is super useful for this.</p>
 <pre class="r"><code>emmeans(fm1, pairwise ~ treatment | infected, adjust = &#39;holm&#39;)$contrast</code></pre>
@@ -164,7 +164,7 @@ AIC(fm1, fm2)</code></pre>
 <li>A model with only uninfected individuals.</li>
 <li>A model with only infected individuals.</li>
 </ul>
-<p>I think it is preferable to fit a single model and then to generate the comparisons of interest from this one model. This way, one gets to use the full dataset to estimate the model.</p>
+<p>I think it is preferable to fit a single model and then to generate the comparisons of interest from this one model. This way, one gets to use the full data set to estimate the model.</p>
 <p>Overall though, the conclusions of the paper are upheld.</p>
 </div>
 </div>
