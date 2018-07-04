@@ -3,8 +3,8 @@ title: Demandt et al. - Stickleback groups and parasite infection
 author: ~
 date: '2018-07-04'
 slug: demandt-et-al-stickleback-groups-and-parasite-infection
-categories: []
-tags: []
+categories: [reproduction]
+tags: [r]
 header:
   caption: ''
   image: ''
@@ -12,14 +12,37 @@ header:
 
 
 
-<p><a href="http://rspb.royalsocietypublishing.org/content/285/1881/20180956" class="uri">http://rspb.royalsocietypublishing.org/content/285/1881/20180956</a></p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>I’ll start of these blogposts (see <a href="/post/blog-goals-and-introduction/index.html">here</a> for a more general introduction) with an interesting paper that recently came in Proceedings B, by Nicolle Demandt, Benedikt Saus and others. Briefly, the study looks at how the behavior of stickleback fish changes when animals get infected with tape worms. Now we already know that some pariste infections can change behavior, for example by making animals less risk-averse. But in this paper the authors also look at how the behavior of non-infected fish changes when others in the group are infected.</p>
+<p>The experiment involves infection some fish with tape worms, while other fish are kept healthy. The authors then let them swim together in groups of six fish, with different numbers of healty or infected fish. This results in frou treatments: six uninfected sticklebacks (6u), four uninfected and two infected sticklebacks (4u/2i), two uninfected and four infected sticklebacks (2u/4i) and six infected sticklebacks (6i).</p>
+<p>They then expose these groups to a simulated bird attack, and measure their behavior before, during and after the attack.</p>
+<p>For this post, I will just focus on the result presented in figure 2, which involves the escape from the simulated attack. The other analysis about time usage is bascially very similar. This statement from the abstract is the topic here:</p>
+<blockquote>
+<p><em>“… individuals in groups with only infected members showed lower escape responses and higher risk-taking than individuals from groups with only uninfected members. Importantly, uninfected individuals adjusted their risk-taking behaviour to the number of infected group members, taking more risk with an increasing number of infected group members.”</em></p>
+</blockquote>
+<p>You can read the full open-access paper <a href="http://rspb.royalsocietypublishing.org/content/285/1881/20180956">here</a>.</p>
+</div>
+<div id="short-conclusion" class="section level1">
+<h1>Short conclusion</h1>
+<p>I chose a different analysis strategy, using a single model instead of two. Regardless, the results are robust against this choice, and the conclusions hold.</p>
+<p>Overall, the data was easily available (although in .xlsx format), and the figures and analyses were easy to reproduce!</p>
+<p>I did find the figures to be not so great, and I would have made some adjustments, but that can be taste.</p>
+</div>
+<div id="analysis" class="section level1">
+<h1>Analysis</h1>
+<div id="packages-and-data" class="section level3">
+<h3>Packages and data</h3>
+<p>I’ll start by loading some pacakges for general convinience and mixed modelling.</p>
 <pre class="r"><code>library(tidyverse)
 library(lmerTest)
 library(emmeans)</code></pre>
+<p>The data is available on dryad, and with the follow code we can easily obtain the data, straight from their servers. It’s an excel file (I’d prefer to see .csv), so we’ll use the <code>readxl</code> package to read it in.</p>
 <pre class="r"><code>url &lt;- &#39;https://datadryad.org/bitstream/handle/10255/dryad.178683/Demandt_et_al_data.xlsx?sequence=1&#39;
-httr::GET(url, httr::write_disk(tf &lt;- tempfile(fileext = &quot;.xlsx&quot;)))</code></pre>
-<pre class="r"><code>d &lt;- readxl::read_excel(tf)
+tmp &lt;- httr::GET(url, httr::write_disk(tf &lt;- tempfile(fileext = &quot;.xlsx&quot;)))
+d &lt;- readxl::read_excel(tf)
 unlink(tf)</code></pre>
+<p>This works fine, but the colomn names are long and inconsistent, and not everything is coded with the same levels as the figures. So I start of by renaming and relabelling the data.</p>
 <pre class="r"><code>d2 &lt;- d %&gt;% 
   transmute(
     group = factor(GroupID),
@@ -30,9 +53,9 @@ unlink(tf)</code></pre>
     time_dangerous = `Time spend in dangerous zone (sec)`,
     period = factor(`BeforeOrAfter bird strike`, c(&#39;Before&#39;, &#39;After&#39;), c(&#39;before&#39;, &#39;after&#39;)),
     escape_zone = factor(`Escape zone`, c(&#39;Safe zone&#39;, &#39;Dangerous zone&#39;), c(&#39;safe&#39;, &#39;dangerous&#39;))
-  )
-
-d2</code></pre>
+  )</code></pre>
+<p>Let’s have a quick look:</p>
+<pre class="r"><code>d2</code></pre>
 <pre><code>## # A tibble: 336 x 7
 ##    group fish  treatment infected time_dangerous period escape_zone
 ##    &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;     &lt;fct&gt;             &lt;dbl&gt; &lt;fct&gt;  &lt;fct&gt;      
@@ -47,24 +70,32 @@ d2</code></pre>
 ##  9 1     2     6u        uninf               580 before safe       
 ## 10 1     2     6u        uninf               172 after  safe       
 ## # ... with 326 more rows</code></pre>
+<p>Overall, this looks good! One thing to look out for, is that the recorded escape zone (where each fish went during the simulated attack) is repeated twice, since there are before and after periods for each fish. I’ll create another data.frame that only has one observation per fish:</p>
 <pre class="r"><code>d3 &lt;- filter(d2, period == &#39;after&#39;)</code></pre>
-<div id="analysis-1-immediate-escape" class="section level3">
-<h3>Analysis 1: immediate escape</h3>
+</div>
+<div id="analysis-escape-zone" class="section level3">
+<h3>Analysis: escape zone</h3>
+<p>Figure 2 in the paper looks at whether the fish escaped towards the safe lower part of the tank during the simluated attack, or whether they remained exposed by staying in the top section where they would be reachable by the bird predator.</p>
+<p>We can quite easily recreate figure 2:</p>
 <pre class="r"><code>ggplot(d3, aes(infected, escape_zone, fill = infected, group = infected)) +
   geom_violin(scale = &#39;count&#39;)  +
   geom_jitter(height = 0, width = 0.2, alpha = 0.3) +
   facet_grid(~treatment) +
-  scale_y_discrete(expand = c(0.1, 0)) +
+  scale_y_discrete(expand = c(0.02, 0)) +
   scale_fill_manual(values = c(&#39;white&#39;, &#39;grey50&#39;)) +
   labs(x = &#39;infection status&#39;, y = &#39;escape zone&#39;, fill = NULL) +
   theme(legend.position = &#39;bottom&#39;)</code></pre>
 <p><img src="/post/2018-07-04-demandt-et-al-stickleback-groups-and-parasite-infection_files/figure-html/recreate_fig2-1.png" width="672" /></p>
+<p>However, I think this figure is less than ideal. Violin plots don’t make a lot of sense here. They are meant to show continious distributions, but here they are applied to binary data. It is also hard to see what the average response would be. I would probably rather use simple means and confidence intervals. One could calculate the binomial confidence interval (<code>binom.test</code> gives them, for example), but bootstrapped confidence intervals will also do, and are really easy with <code>ggplot2</code>.</p>
+<p>I also think it is unneccesary to show the non-existing groups (i.e. there are no infected fish in the 6u treatment).</p>
 <pre class="r"><code>ggplot(d3, aes(infected, as.numeric(escape_zone) - 1, group = infected)) +
   stat_summary(fun.data = &#39;mean_cl_boot&#39;, size = 1.5, fatten = 2.5) +
   facet_grid(~treatment, scales = &#39;free_x&#39;, space = &#39;free_x&#39;) +
   ylim(0, 1) +
   labs(x = &#39;infection status&#39;, y = &#39;fraction with dangerous escape&#39;)</code></pre>
 <p><img src="/post/2018-07-04-demandt-et-al-stickleback-groups-and-parasite-infection_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>In this figure, for example, it is easier to see that the infected and non-infected individuals in the 2u/4i treatment respond very similarly.</p>
+<p>Alternatively, we could do away with facets entirely. Although it does not matter much, I think.</p>
 <pre class="r"><code>ggplot(d3, aes(treatment, as.numeric(escape_zone) - 1, color = infected)) +
   stat_summary(fun.data = &#39;mean_cl_boot&#39;, size = 1.5, fatten = 2.5, 
                position =  position_dodge(width = 0.3)) +
@@ -72,20 +103,33 @@ d2</code></pre>
   ylim(0, 1) +
   labs(x = &#39;group composition&#39;, y = &#39;fraction that lacked escape&#39;, color = &#39;infection status&#39;)</code></pre>
 <p><img src="/post/2018-07-04-demandt-et-al-stickleback-groups-and-parasite-infection_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>So clearly, to analyze the escape behavior we will need a binomial model (there are two possbile escape zones). And we will need to include a random effect for group id since multiple fish per group were observed, but they are not indepedent. So a generalizer mixed model it is.</p>
 <pre class="r"><code>fm1 &lt;- glmer(escape_zone ~ treatment * infected + (1 | group), d3, &#39;binomial&#39;)</code></pre>
 <pre><code>## fixed-effect model matrix is rank deficient so dropping 2 columns / coefficients</code></pre>
-<pre class="r"><code>fm2 &lt;- glmer(escape_zone ~ treatment + infected + (1 | group), d3, &#39;binomial&#39;)
+<p>This model generates a message about dropping two coefficients. This makes sense, the effect of infection status cannot be estimated in the groups of only infected or non-infected fish.</p>
+<p>We should first assess wehther the data supports the inclusion of the interaction term. I do that by fittin the model without the interaction, and comparing AICs.</p>
+<pre class="r"><code>fm2 &lt;- update(fm1, . ~ . -treatment:infected)
 AIC(fm1, fm2)</code></pre>
 <pre><code>##     df      AIC
 ## fm1  7 175.3231
 ## fm2  6 178.7194</code></pre>
-<pre class="r"><code>(pairwise &lt;- emmeans(fm1, ~treatment | infected, contr = &#39;pairwise&#39;)$contrast)</code></pre>
+<p>The model with the interaction is about 3.5 points better, so we’ll keep it in. Indeed the F values for all terms are reasonably high:</p>
+<pre class="r"><code>anova(fm1)</code></pre>
+<pre><code>## Analysis of Variance Table
+##                    Df  Sum Sq Mean Sq F value
+## treatment           3 13.4486  4.4829  4.4829
+## infected            1  3.4544  3.4544  3.4544
+## treatment:infected  1  5.0999  5.0999  5.0999</code></pre>
+<p>There are no p-values given here, but p-values are available for the individual coefficents, see <code>coef(summary(fm1))</code>.</p>
+<p>So the escape behavior depends on both the infection status and group composition Two immediate follow-up questions would be if infected fish decrease their risk-taking when grouped with healthy fish, and if healthy fish increase their risk when swimming with infected fish.</p>
+<p>This can be answered by looking at some post-hoc comparisons. Specifically we want to look at the contrast between group composition, within each infection status. The <code>emmeans</code> package is super useful for this.</p>
+<pre class="r"><code>emmeans(fm1, pairwise ~ treatment | infected, adjust = &#39;holm&#39;)$contrast</code></pre>
 <pre><code>## infected = uninf:
 ##  contrast        estimate       SE  df z.ratio p.value
-##  6u - 4u/2i    -0.1797502 1.382841 Inf  -0.130  0.9992
-##  6u - 2u/4i    -3.8899251 1.382848 Inf  -2.813  0.0253
+##  6u - 4u/2i    -0.1797502 1.382841 Inf  -0.130  0.8966
+##  6u - 2u/4i    -3.8899251 1.382848 Inf  -2.813  0.0147
 ##  6u - 6i           nonEst       NA  NA      NA      NA
-##  4u/2i - 2u/4i -3.7101750 1.497699 Inf  -2.477  0.0635
+##  4u/2i - 2u/4i -3.7101750 1.497699 Inf  -2.477  0.0265
 ##  4u/2i - 6i        nonEst       NA  NA      NA      NA
 ##  2u/4i - 6i        nonEst       NA  NA      NA      NA
 ## 
@@ -94,89 +138,33 @@ AIC(fm1, fm2)</code></pre>
 ##  6u - 4u/2i        nonEst       NA  NA      NA      NA
 ##  6u - 2u/4i        nonEst       NA  NA      NA      NA
 ##  6u - 6i           nonEst       NA  NA      NA      NA
-##  4u/2i - 2u/4i -0.6308713 1.181557 Inf  -0.534  0.9508
-##  4u/2i - 6i    -0.2129252 1.132152 Inf  -0.188  0.9976
-##  2u/4i - 6i     0.4179462 1.020598 Inf   0.410  0.9768
+##  4u/2i - 2u/4i -0.6308713 1.181557 Inf  -0.534  1.0000
+##  4u/2i - 6i    -0.2129252 1.132152 Inf  -0.188  1.0000
+##  2u/4i - 6i     0.4179462 1.020598 Inf   0.410  1.0000
 ## 
 ## Results are given on the log odds ratio (not the response) scale. 
-## P value adjustment: tukey method for comparing a family of 4 estimates</code></pre>
+## P value adjustment: holm method for 6 tests</code></pre>
+<p>Note that we get <code>NA</code> values for the comparisons that are invalid (because of our rank-deficient model). That’s a bit of an issue here, since the standard Tukey method will control for a test too many. So I’m using the Holm method.</p>
+<p>We can clearly see that the infected fish don’t change their behavior with group composition, but the infected fish have significantly changed their behavior when the majority of the group is infected.</p>
+<p>I conclude that the statement <em>“uninfected individuals adjusted their risk-taking behaviour to the number of infected group members, taking more risk with an increasing number of infected group members”</em> seems to be true.</p>
+<p>The authors also said: <em>“individuals in groups with only infected members showed lower escape responses and higher risk-taking than individuals from groups with only uninfected members.”</em> We can obtain this comparison from the same model as well:</p>
+<pre class="r"><code>emmeans(fm1, pairwise ~ treatment + infected, adjust = &#39;none&#39;)$contrast %&gt;% 
+  as.data.frame() %&gt;% 
+  filter(contrast == &quot;6u,uninf - 6i,inf&quot;)</code></pre>
+<pre><code>##            contrast  estimate       SE  df   z.ratio     p.value
+## 1 6u,uninf - 6i,inf -3.685335 1.241082 Inf -2.969455 0.002983288</code></pre>
+<p>Clearly, this statement is true as well.</p>
 </div>
-<div id="analysis-2-zone-use-after-simulated-attack" class="section level3">
-<h3>Analysis 2: zone use after simulated attack</h3>
-<pre class="r"><code>ggplot(d2, aes(treatment, time_dangerous, fill = infected)) +
-  geom_boxplot(position = position_dodge(0.75, preserve = &#39;single&#39;))  +
-  geom_point(alpha = 0.3, position = position_dodge(0.75)) +
-  geom_point(shape = &#39;X&#39;, stat = &#39;summary&#39;, fun.y = mean, position = position_dodge(0.75),
-             size = 3) +
-  facet_grid(~period) +
-  scale_fill_manual(values = c(&#39;white&#39;, &#39;grey50&#39;)) +
-  labs(x = &#39;treatment&#39;, y = &#39;time spent in dangerous zone&#39;, fill = NULL) +
-  theme(legend.position = &#39;bottom&#39;)</code></pre>
-<p><img src="/post/2018-07-04-demandt-et-al-stickleback-groups-and-parasite-infection_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<pre class="r"><code>ggplot(d2, aes(treatment, time_dangerous, fill = period)) +
-  geom_violin(alpha = 0.3, col = NA) +
-  stat_summary(fun.data = &#39;mean_cl_boot&#39;, position = position_dodge(0.9)) +
-  facet_grid(~infected, scales = &#39;free&#39;) +
-  #scale_fill_manual(values = c(&#39;white&#39;, &#39;grey50&#39;)) +
-  labs(x = &#39;infection status&#39;, y = &#39;escape zone&#39;, fill = NULL) +
-  theme(legend.position = &#39;bottom&#39;)</code></pre>
-<p><img src="/post/2018-07-04-demandt-et-al-stickleback-groups-and-parasite-infection_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<pre class="r"><code>fm3 &lt;- lmer(time_dangerous ~ treatment * period * infected + (period|group) + (1|fish), 
-            d2, REML = FALSE)</code></pre>
-<pre><code>## fixed-effect model matrix is rank deficient so dropping 4 columns / coefficients</code></pre>
-<pre class="r"><code>fm4 &lt;- lmer(time_dangerous ~ (treatment + period + infected)^2 + (period|group) + (1|fish), 
-            d2, REML = FALSE)</code></pre>
-<pre><code>## fixed-effect model matrix is rank deficient so dropping 2 columns / coefficients</code></pre>
-<pre class="r"><code>AIC(fm3, fm4) %&gt;% arrange(AIC) %&gt;% mutate(dAIC = AIC - first(AIC))</code></pre>
-<pre><code>##   df      AIC     dAIC
-## 1 17 4308.198 0.000000
-## 2 16 4310.314 2.115266</code></pre>
-<pre class="r"><code>anova(fm3)</code></pre>
-<pre><code>## Missing cells for: treatment6i:infecteduninf, treatment6u:infectedinf, treatment6i:periodbefore:infecteduninf, treatment6i:periodafter:infecteduninf, treatment6u:periodbefore:infectedinf, treatment6u:periodafter:infectedinf.  
-## Interpret type III hypotheses with care.</code></pre>
-<pre><code>## Type III Analysis of Variance Table with Satterthwaite&#39;s method
-##                           Sum Sq Mean Sq NumDF   DenDF F value    Pr(&gt;F)
-## treatment                  45245   15082     3  30.794  1.2762 0.2998852
-## period                    206833  206833     1  28.598 17.5016 0.0002480
-## infected                   95806   95806     1 138.969  8.1068 0.0050793
-## treatment:period          181438   60479     3  31.267  5.1176 0.0053813
-## treatment:infected         80156   80156     1 138.969  6.7826 0.0102062
-## period:infected           138877  138877     1 136.777 11.7513 0.0008036
-## treatment:period:infected  49373   49373     1 136.777  4.1778 0.0428763
-##                              
-## treatment                    
-## period                    ***
-## infected                  ** 
-## treatment:period          ** 
-## treatment:infected        *  
-## period:infected           ***
-## treatment:period:infected *  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<pre class="r"><code>emmeans(fm3, ~treatment*infected | period)</code></pre>
-<pre><code>## fixed-effect model matrix is rank deficient so dropping 4 columns / coefficients</code></pre>
-<pre><code>## period = before:
-##  treatment infected   emmean       SE    df   lower.CL upper.CL
-##  6u        uninf    486.5476 50.76318 32.68 383.230176 589.8651
-##  4u/2i     uninf    394.0357 52.44086 37.89 287.864842 500.2066
-##  2u/4i     uninf    411.5714 57.17930 55.36 296.998456 526.1444
-##  6i        uninf      nonEst       NA    NA         NA       NA
-##  6u        inf        nonEst       NA    NA         NA       NA
-##  4u/2i     inf      412.5000 57.17930 55.36 297.927028 527.0730
-##  2u/4i     inf      392.1071 52.44086 37.89 285.936270 498.2780
-##  6i        inf      441.3698 50.76200 32.67 338.054225 544.6855
-## 
-## period = after:
-##  treatment infected   emmean       SE    df   lower.CL upper.CL
-##  6u        uninf    114.8571 57.61133 32.67  -2.398311 232.1126
-##  4u/2i     uninf    128.2500 59.09491 36.70   8.478912 248.0211
-##  2u/4i     uninf    421.3571 63.33748 49.89 294.133393 548.5809
-##  6i        uninf      nonEst       NA    NA         NA       NA
-##  6u        inf        nonEst       NA    NA         NA       NA
-##  4u/2i     inf      341.4286 63.33748 49.89 214.204822 468.6523
-##  2u/4i     inf      451.1429 59.09491 36.70 331.371769 570.9139
-##  6i        inf      393.4097 57.61029 32.67 276.155839 510.6635
-## 
-## Degrees-of-freedom method: kenward-roger 
-## Confidence level used: 0.95</code></pre>
+<div id="the-authors-analysis" class="section level2">
+<h2>The authors’ analysis</h2>
+<p>After my analysis, I read the statistics section and results from the paper. The paper actually uses 4 different models:</p>
+<ul>
+<li>A model with only 9u and 6i.</li>
+<li>A model with only 4u/2i and 2u/4i.</li>
+<li>A model with only uninfected individuals.</li>
+<li>A model with only infected individuals.</li>
+</ul>
+<p>I think it is preferable to fit a single model and then to generate the comparisons of interest from this one model. This way, one gets to use the full dataset to estimate the model.</p>
+<p>Overall though, the conclusions of the paper are upheld.</p>
+</div>
 </div>

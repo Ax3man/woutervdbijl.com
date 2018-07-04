@@ -3,8 +3,8 @@ title: Demandt et al. - Stickleback groups and parasite infection
 author: ~
 date: '2018-07-04'
 slug: demandt-et-al-stickleback-groups-and-parasite-infection
-categories: []
-tags: []
+categories: [reproduction]
+tags: [r]
 header:
   caption: ''
   image: ''
@@ -14,7 +14,33 @@ header:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-http://rspb.royalsocietypublishing.org/content/285/1881/20180956
+#Introduction
+
+I'll start of these blogposts (see [here](/post/blog-goals-and-introduction/index.html) for a more general introduction) with an interesting paper that recently came in Proceedings B, by Nicolle Demandt, Benedikt Saus and others. Briefly, the study looks at how the behavior of stickleback fish changes when animals get infected with tape worms. Now we already know that some pariste infections can change behavior, for example by making animals less risk-averse. But in this paper the authors also look at how the behavior of non-infected fish changes when others in the group are infected.
+
+The experiment involves infection some fish with tape worms, while other fish are kept healthy. The authors then let them swim together in groups of six fish, with different numbers of healty or infected fish. This results in frou treatments: six uninfected sticklebacks (6u), four uninfected and two infected sticklebacks (4u/2i), two uninfected and four infected sticklebacks (2u/4i) and six infected sticklebacks (6i).
+
+They then expose these groups to a simulated bird attack, and measure their behavior before, during and after the attack.
+
+For this post, I will just focus on the result presented in figure 2, which involves the escape from the simulated attack. The other analysis about time usage is bascially very similar. This statement from the abstract is the topic here:
+
+> _"... individuals in groups with only infected members showed lower escape responses and higher risk-taking than individuals from groups with only uninfected members. Importantly, uninfected individuals adjusted their risk-taking behaviour to the number of infected group members, taking more risk with an increasing number of infected group members."_
+
+You can read the full open-access paper [here](http://rspb.royalsocietypublishing.org/content/285/1881/20180956).
+
+#Short conclusion
+
+I chose a different analysis strategy, using a single model instead of two. Regardless, the results are robust against this choice, and the conclusions hold. 
+
+Overall, the data was easily available (although in .xlsx format), and the figures and analyses were easy to reproduce!
+
+I did find the figures to be not so great, and I would have made some adjustments, but that can be taste.
+
+#Analysis
+
+###Packages and data
+
+I'll start by loading some pacakges for general convinience and mixed modelling.
 
 ```{r packages, message=FALSE}
 library(tidyverse)
@@ -22,12 +48,16 @@ library(lmerTest)
 library(emmeans)
 ```
 
+The data is available on dryad, and with the follow code we can easily obtain the data, straight from their servers. It's an excel file (I'd prefer to see .csv), so we'll use the `readxl` package to read it in.
+
 ```{r data_load, results='hide'}
 url <- 'https://datadryad.org/bitstream/handle/10255/dryad.178683/Demandt_et_al_data.xlsx?sequence=1'
-httr::GET(url, httr::write_disk(tf <- tempfile(fileext = ".xlsx")))
+tmp <- httr::GET(url, httr::write_disk(tf <- tempfile(fileext = ".xlsx")))
 d <- readxl::read_excel(tf)
 unlink(tf)
 ```
+
+This works fine, but the colomn names are long and inconsistent, and not everything is coded with the same levels as the figures. So I start of by renaming and relabelling the data.
 
 ```{r data_preprocess}
 d2 <- d %>% 
@@ -41,26 +71,40 @@ d2 <- d %>%
     period = factor(`BeforeOrAfter bird strike`, c('Before', 'After'), c('before', 'after')),
     escape_zone = factor(`Escape zone`, c('Safe zone', 'Dangerous zone'), c('safe', 'dangerous'))
   )
+```
 
+Let's have a quick look:
+
+```{r data_look}
 d2
 ```
+
+Overall, this looks good! One thing to look out for, is that the recorded escape zone (where each fish went during the simulated attack) is repeated twice, since there are before and after periods for each fish. I'll create another data.frame that only has one observation per fish:
 
 ```{r}
 d3 <- filter(d2, period == 'after')
 ```
 
-###Analysis 1: immediate escape
+###Analysis: escape zone
+
+Figure 2 in the paper looks at whether the fish escaped towards the safe lower part of the tank during the simluated attack, or whether they remained exposed by staying in the top section where they would be reachable by the bird predator.
+
+We can quite easily recreate figure 2:
 
 ```{r recreate_fig2}
 ggplot(d3, aes(infected, escape_zone, fill = infected, group = infected)) +
   geom_violin(scale = 'count')  +
   geom_jitter(height = 0, width = 0.2, alpha = 0.3) +
   facet_grid(~treatment) +
-  scale_y_discrete(expand = c(0.1, 0)) +
+  scale_y_discrete(expand = c(0.02, 0)) +
   scale_fill_manual(values = c('white', 'grey50')) +
   labs(x = 'infection status', y = 'escape zone', fill = NULL) +
   theme(legend.position = 'bottom')
 ```
+
+However, I think this figure is less than ideal. Violin plots don't make a lot of sense here. They are meant to show continious distributions, but here they are applied to binary data. It is also hard to see what the average response would be. I would probably rather use simple means and confidence intervals. One could calculate the binomial confidence interval (`binom.test` gives them, for example), but bootstrapped confidence intervals will also do, and are really easy with `ggplot2`.
+
+I also think it is unneccesary to show the non-existing groups (i.e. there are no infected fish in the 6u treatment).
 
 ```{r}
 ggplot(d3, aes(infected, as.numeric(escape_zone) - 1, group = infected)) +
@@ -69,6 +113,10 @@ ggplot(d3, aes(infected, as.numeric(escape_zone) - 1, group = infected)) +
   ylim(0, 1) +
   labs(x = 'infection status', y = 'fraction with dangerous escape')
 ```
+
+In this figure, for example, it is easier to see that the infected and non-infected individuals in the 2u/4i treatment respond very similarly.
+
+Alternatively, we could do away with facets entirely. Although it does not matter much, I think. 
 
 ```{r}
 ggplot(d3, aes(treatment, as.numeric(escape_zone) - 1, color = infected)) +
@@ -79,46 +127,62 @@ ggplot(d3, aes(treatment, as.numeric(escape_zone) - 1, color = infected)) +
   labs(x = 'group composition', y = 'fraction that lacked escape', color = 'infection status')
 ```
 
+So clearly, to analyze the escape behavior we will need a binomial model (there are two possbile escape zones). And we will need to include a random effect for group id since multiple fish per group were observed, but they are not indepedent. So a generalizer mixed model it is.
+
 ```{r}
 fm1 <- glmer(escape_zone ~ treatment * infected + (1 | group), d3, 'binomial')
-fm2 <- glmer(escape_zone ~ treatment + infected + (1 | group), d3, 'binomial')
+```
+
+This model generates a message about dropping two coefficients. This makes sense, the effect of infection status cannot be estimated in the groups of only infected or non-infected fish.
+
+We should first assess wehther the data supports the inclusion of the interaction term. I do that by fittin the model without the interaction, and comparing AICs.
+
+```{r}
+fm2 <- update(fm1, . ~ . -treatment:infected)
 AIC(fm1, fm2)
-
-(pairwise <- emmeans(fm1, ~treatment | infected, contr = 'pairwise')$contrast)
 ```
 
-###Analysis 2: zone use after simulated attack
+The model with the interaction is about 3.5 points better, so we'll keep it in. Indeed the F values for all terms are reasonably high:
 
 ```{r}
-ggplot(d2, aes(treatment, time_dangerous, fill = infected)) +
-  geom_boxplot(position = position_dodge(0.75, preserve = 'single'))  +
-  geom_point(alpha = 0.3, position = position_dodge(0.75)) +
-  geom_point(shape = 'X', stat = 'summary', fun.y = mean, position = position_dodge(0.75),
-             size = 3) +
-  facet_grid(~period) +
-  scale_fill_manual(values = c('white', 'grey50')) +
-  labs(x = 'treatment', y = 'time spent in dangerous zone', fill = NULL) +
-  theme(legend.position = 'bottom')
+anova(fm1)
 ```
+
+There are no p-values given here, but p-values are available for the individual coefficents, see `coef(summary(fm1))`.
+
+So the escape behavior depends on both the infection status and group composition Two immediate follow-up questions would be if infected fish decrease their risk-taking when grouped with healthy fish, and if healthy fish increase their risk when swimming with infected fish.
+
+This can be answered by looking at some post-hoc comparisons. Specifically we want to look at the contrast between group composition, within each infection status. The `emmeans` package is super useful for this.
 
 ```{r}
-ggplot(d2, aes(treatment, time_dangerous, fill = period)) +
-  geom_violin(alpha = 0.3, col = NA) +
-  stat_summary(fun.data = 'mean_cl_boot', position = position_dodge(0.9)) +
-  facet_grid(~infected, scales = 'free') +
-  #scale_fill_manual(values = c('white', 'grey50')) +
-  labs(x = 'infection status', y = 'escape zone', fill = NULL) +
-  theme(legend.position = 'bottom')
+emmeans(fm1, pairwise ~ treatment | infected, adjust = 'holm')$contrast
 ```
+
+Note that we get `NA` values for the comparisons that are invalid (because of our rank-deficient model). That's a bit of an issue here, since the standard Tukey method will control for a test too many. So I'm using the Holm method.
+
+We can clearly see that the infected fish don't change their behavior with group composition, but the infected fish have significantly changed their behavior when the majority of the group is infected.
+
+I conclude that the statement _"uninfected individuals adjusted their risk-taking behaviour to the number of infected group members, taking more risk with an increasing number of infected group members"_ seems to be true.
+
+The authors also said: _"individuals in groups with only infected members showed lower escape responses and higher risk-taking than individuals from groups with only uninfected members."_ We can obtain this comparison from the same model as well:
 
 ```{r}
-fm3 <- lmer(time_dangerous ~ treatment * period * infected + (period|group) + (1|fish), 
-            d2, REML = FALSE)
-fm4 <- lmer(time_dangerous ~ (treatment + period + infected)^2 + (period|group) + (1|fish), 
-            d2, REML = FALSE)
-AIC(fm3, fm4) %>% arrange(AIC) %>% mutate(dAIC = AIC - first(AIC))
-
-anova(fm3)
-emmeans(fm3, ~treatment*infected | period)
+emmeans(fm1, pairwise ~ treatment + infected, adjust = 'none')$contrast %>% 
+  as.data.frame() %>% 
+  filter(contrast == "6u,uninf - 6i,inf")
 ```
 
+Clearly, this statement is true as well.
+
+##The authors' analysis
+
+After my analysis, I read the statistics section and results from the paper. The paper actually uses 4 different models:
+
+- A model with only 9u and 6i.
+- A model with only 4u/2i and 2u/4i.
+- A model with only uninfected individuals.
+- A model with only infected individuals.
+
+I think it is preferable to fit a single model and then to generate the comparisons of interest from this one model. This way, one gets to use the full dataset to estimate the model.
+
+Overall though, the conclusions of the paper are upheld.

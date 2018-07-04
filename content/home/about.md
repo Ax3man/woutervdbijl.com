@@ -10,7 +10,7 @@ weight = 5
 # List your academic interests.
 [interests]
   interests = [
-    "Evoltionary biology",
+    "Evolutionary biology",
     "Sexual selection and coloration",
     "Behavior and cognition"
   ]
