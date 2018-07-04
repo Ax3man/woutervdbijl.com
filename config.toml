@@ -51,7 +51,7 @@ enableGitInfo = false
 
   # Font style.
   #   Choose from `default`, `classic`, or `playfair`.
-  font = "playfair"
+  font = "default"
 
   # Your details.
   name = "Wouter van der Bijl"
@@ -59,7 +59,7 @@ enableGitInfo = false
 
   # Organizations/Affiliations.
   #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
-  organizations = [ { name = "Stockholm University", url = "" } ]
+  organizations = [ { name = "Stockholm University", url = "https://www.su.se/english/profiles/wvand-1.194435" } ]
 
   gravatar = false  # Get your avatar from Gravatar.com? (true/false)
   avatar = "me_square.png"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
@@ -115,7 +115,7 @@ enableGitInfo = false
   comment_count = true
 
   # Display next/previous section pager?
-  section_pager = false
+  section_pager = true
 
   # Enable global LaTeX math rendering?
   #   If false, you can enable it locally on a per page basis.
@@ -259,7 +259,7 @@ enableGitInfo = false
 
 [[menu.main]]
   name = "Publications"
-  url = "#publications_selected"
+  url = "#publications"
   weight = 3
 
 [[menu.main]]
@@ -269,7 +269,7 @@ enableGitInfo = false
 
 [[menu.main]]
   name = "Software"
-  url = "#software"
+  url = "#Software"
   weight = 4
 
 [[menu.main]]
