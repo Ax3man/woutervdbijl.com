@@ -1,5 +1,5 @@
 +++
-title = "Brain size affects performance in a reversal-learning test"
+title = "Evolution of brain region volumes during artificial selection for relative brain size"
 date = 2017-10-06T00:00:00
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
