@@ -18,4 +18,4 @@ weight = 60
 I will be teaching this year:
 
 - Biological statistics 1
-- Tidyverse workshop
+- [Advanced data analysis in R, using the tidyverse](https://www.bioresschool.su.se/courses/current-courses/advanced-data-analysis-in-r-using-the-tidyverse-2-hp-1.392888)
