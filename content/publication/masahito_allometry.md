@@ -1,6 +1,6 @@
 +++
 title = "Breakdown of brain–body allometry and the encephalization of birds and mammals"
-date = 2017-03-22T00:00:00
+date = 2018-08-28T00:00:00
 
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Masahito Tsuboi", "Wouter van der Bijl", "Bjørn Tore Kopperud", "Johannes Erritzøe", "Kjetil L. Voje", "Alexander Kotrschal", "Kara E. Yopak", "Shaun P. Collin", "Andrew N. Iwaniuk", "Niclas Kolm"]
@@ -36,19 +36,19 @@ selected = true
 projects = []
 
 # Links (optional).
-url_pdf = "#"
+#url_pdf = "#"
 #url_preprint = "#"
 #url_code = "#"
-#url_dataset = "https://doi.org/10.6084/m9.figshare.6803276"
+url_dataset = "https://doi.org/10.6084/m9.figshare.6803276"
 #url_project = "#"
 #url_slides = "#"
 #url_video = "#"
 #url_poster = "#"
-#url_source = "https://www.nature.com/articles/s41559-018-0632-1"
+#url_source = ""
 
 # Custom links (optional).
 #   Uncomment line below to enable. For multiple links, use the form `[{...}, {...}, {...}]`.
-# url_custom = [{name = "Custom Link", url = "http://example.org"}]
+url_custom = [{name = "Journal", url = "https://www.nature.com/articles/s41559-018-0632-1"}]
 
 # Does the content use math formatting?
 math = false
@@ -60,9 +60,7 @@ highlight = false
 # Place your image in the `static/img/` folder and reference its filename below, e.g. `image = "example.jpg"`.
 [header]
 image = "headers/bubbles-wide.jpg"
-caption = "My caption :smile:"
+caption = ""
 
 +++
-
-More detail can easily be written here using *Markdown* and $\rm \LaTeX$ math code.
 
