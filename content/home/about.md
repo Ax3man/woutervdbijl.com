@@ -28,7 +28,7 @@ weight = 5
 
 [[education.courses]]
   course = "BSc in Life Science & Technology"
-  institution = "Massachusetts Institute of Technology"
+  institution = "University of Groningen"
   year = 2010
  
 +++
