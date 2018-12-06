@@ -37,4 +37,4 @@ weight = 5
 
 I am currently working as a post-doctoral researcher in the lab of Judith Mank, at UBC.
 
-Previously, I worked in the lab of Cris Wheat on butterfly coloration. I was a PhD student with Niclas Kolm studying the function and evolution of brain size. For my thesis I performed experiments on brain size in guppies, and performed comparative analyses on the same topic.
+Previously, I worked in the lab of Chris Wheat on butterfly coloration. I was a PhD student with Niclas Kolm studying the function and evolution of brain size. For my thesis I performed experiments on brain size in guppies, and performed comparative analyses on the same topic.
