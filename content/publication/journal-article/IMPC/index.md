@@ -23,7 +23,7 @@ summary:
 title: "Widespread cryptic variation in genetic architecture between the sexes"
 url_code: ""
 url_dataset: ""
-url_pdf: http://advances.sciencemag.org/content/advances/3/3/e1601990.full.pdf
+url_pdf: https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/evl3.245?download=true
 url_poster: ""
 url_project: ""
 url_slides: ""
