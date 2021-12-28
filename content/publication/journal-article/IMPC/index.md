@@ -8,7 +8,11 @@ date: "2021-07-01T00:00:00"
 doi: ""
 featured: true
 image:
-  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/jdD8gXaTZsc)'
+  placement: 1
+  caption: "Figure 1"
+  focal_point: "Center"
+  preview_only: false
+  alt_text:
 focal_point: ""
 preview_only: false
 projects: []
