@@ -4,6 +4,9 @@
 #   The weight parameter defines the order that the links will appear in.
 
 main:
-  - name: Publications
+  - name: Highlighted papers
     url: '#featured'
     weight: 50
+  - name: All publications
+    url: '/publication/journal-article/'
+    weight: 60
