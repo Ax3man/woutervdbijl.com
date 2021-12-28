@@ -28,7 +28,7 @@ social:
   link: '#contact'
 - icon: twitter
   icon_pack: fab
-  link: https://twitter.com/_Ax3man_
+  link: https://twitter.com/_Axeman_
 - icon: graduation-cap
   icon_pack: fas
   link: https://scholar.google.com/citations?user=1W3hWQMAAAAJ
