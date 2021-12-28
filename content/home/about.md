@@ -1,40 +1,21 @@
-+++
-# About/Biography widget.
-widget = "about"
-active = true
-date = 2016-04-20T00:00:00
+---
+# An instance of the About widget.
+# Documentation: https://wowchemy.com/docs/page-builder/
+widget: about
 
-# Order that this section will appear in.
-weight = 5
+# Activate this widget? true/false
+active: true
 
-# List your academic interests.
-[interests]
-  interests = [
-    "Evolutionary biology",
-    "Sexual selection and coloration",
-    "Behavior and cognition"
-  ]
+# This file represents a page section.
+headless: true
 
-# List your qualifications (such as academic degrees).
-[[education.courses]]
-  course = "PhD in Ethology"
-  institution = "Stockholm University"
-  year = 2018
+# Order that this section appears on the page.
+weight: 20
 
-[[education.courses]]
-  course = "MSc in Behavioral and Cognitive Neuroscience"
-  institution = "University of Groningen"
-  year = 2013
+title: Biography
 
-[[education.courses]]
-  course = "BSc in Life Science & Technology"
-  institution = "University of Groningen"
-  year = 2010
- 
-+++
-
-# Bio
-
-I am currently working as a post-doctoral researcher in the lab of Judith Mank, at UBC.
-
-Previously, I worked in the lab of Chris Wheat on butterfly coloration. I was a PhD student with Niclas Kolm studying the function and evolution of brain size. For my thesis I performed experiments on brain size in guppies, and performed comparative analyses on the same topic.
+# Choose the user profile to display
+# This should be the username (folder name) of a profile in your `content/authors/` folder.
+# See https://wowchemy.com/docs/get-started/#introduce-yourself
+author: Wouter
+---
