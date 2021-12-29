@@ -34,3 +34,5 @@ url_slides: ""
 url_source: "http://dx.doi.org/10.1002/evl3.245"
 url_video: ""
 ---
+
+I wrote an accessible summary of this article on [the Evolution Letters blog](https://evolutionletters.wordpress.com/2021/07/04/how-the-sexes-are-more-different-than-we-thought/).

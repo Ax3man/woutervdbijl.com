@@ -2,6 +2,8 @@
 title = "phylopath: Easy phylogenetic path analysis in R"
 date = 2018-04-16T00:00:00
 
+featured = true
+
 # Authors. Comma separated list, e.g. `["Bob Smith", "David Jones"]`.
 authors = ["Wouter van der Bijl"]
 
@@ -64,4 +66,4 @@ highlight = false
 
 +++
 
-More detail can easily be written here using *Markdown* and $\rm \LaTeX$ math code.
+`phylopath` has it's [own website](https://ax3man.github.io/phylopath/), or find the package on [CRAN](https://cran.r-project.org/web/packages/phylopath/index.html).

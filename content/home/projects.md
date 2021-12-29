@@ -8,9 +8,9 @@ active: false
 headless: true
 
 # Order that this section appears on the page.
-weight: 65
+weight: 100
 
-title: Projects
+title: Other projects
 subtitle: ''
 
 content:
@@ -28,10 +28,10 @@ content:
   filter_button:
   - name: All
     tag: '*'
-  - name: Deep Learning
-    tag: Deep Learning
-  - name: Other
-    tag: Demo
+  - name: Photography
+    tag: Photography
+  - name: R-stats
+    tag: R
 
 design:
   # Choose how many columns the section has. Valid values: '1' or '2'.
