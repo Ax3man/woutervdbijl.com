@@ -10,3 +10,6 @@ main:
   - name: All publications
     url: '/publication/journal-article/'
     weight: 60
+  - name: Contact
+    url: '#contact'
+    weight: 100
