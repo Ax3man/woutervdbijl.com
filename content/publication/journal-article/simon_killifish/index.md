@@ -5,7 +5,7 @@ authors:
   - Simon Eckerström-Liedholm
   - Will Sowersby
   - Sergey Morozov
-  - Wouter
+  - Wouter van der Bijl
   - Piotr K. Rowiński
   - Alejandro Gonzalez-Voyer
   - Björn Rogell
