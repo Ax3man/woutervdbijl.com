@@ -16,8 +16,8 @@ image:
 focal_point: ""
 preview_only: false
 projects: []
-publication: 'In *Science Advances*.'
-publication_short: "In *Sci Adv*"
+publication: 'In *Evolution Letters*.'
+publication_short: "In *Evol Lett*"
 publication_types:
   - "2"
 publishDate: "2021-07-01T00:00:00"
