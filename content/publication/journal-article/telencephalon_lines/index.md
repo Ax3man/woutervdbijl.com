@@ -26,7 +26,7 @@ summary:
 title: "Rapid mosaic brain evolution under artificial selection for relative telencephalon size in the guppy (Poecilia reticulata)"
 url_code: ""
 url_dataset: ""
-url_pdf: ""
+url_pdf: "https://www.science.org/doi/pdf/10.1126/sciadv.abj4314?download=true"
 url_poster: ""
 url_project: ""
 url_slides: ""
