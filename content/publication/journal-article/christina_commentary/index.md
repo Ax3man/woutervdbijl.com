@@ -6,7 +6,7 @@ authors:
   - Christina Hansen Wheat
   - Wouter van der Bijl
   - Clive D.L. Wynne
-date: "2022-10-12T00:00:00"
+date: "2023-01-01T00:00:00"
 doi: "10.3758/s13420-022-00544-2"
 featured: false
 
@@ -15,7 +15,7 @@ publication: 'In *Learning & Behavior*.'
 publication_short: "In *Learn Behav*"
 publication_types:
   - "2"
-publishDate: "2022-10-12T00:00:00"
+publishDate: "2023-01-01T00:00:00"
 slides: 
 summary: 
 
