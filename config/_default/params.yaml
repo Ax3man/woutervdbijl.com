@@ -20,7 +20,7 @@ twitter: ''
 
 # Contact (edit or remove options as required)
 
-email: wouter@zoology.ubc.ca
+email: wouter@mail.ubc.ca
 #phone: 888 888 88 88
 # address:
 #   street: 450 Serra Mall
@@ -42,6 +42,10 @@ contact_links:
     icon_pack: fab
     name: "@\\_Axeman\\_"
     link: 'https://twitter.com/_Axeman_'
+  - icon: github
+    icon_pack: fab
+    name: "@Ax3man"
+    link: 'https://github.com/Ax3man'
   # - icon: skype
   #   icon_pack: fab
   #   name: Skype Me
@@ -113,7 +117,7 @@ avatar:
   gravatar: false
   shape: circle
 publications:
-  date_format: January 2006
+  date_format: "2006"
   citation_style: apa
 projects:
   post_view: 2

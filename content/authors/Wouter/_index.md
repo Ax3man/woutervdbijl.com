@@ -11,17 +11,17 @@ education:
   - course: BSc in Life Science & Technology
     institution: University of Groningen
     year: 2010
-email: "wouter@zoology.ubc.ca"
+email: "wouter@mail.ubc.ca"
 interests:
-- Evolutionary biology
+- Trait evolution
 - Sexual selection and coloration
-- Behavior and cognition
 - (Quantative) genetics
+- Behavior and cognition
 - Machine learning
 organizations:
 - name: University of British Columbia
-  url: ""
-role: Postdoctoral Research Fellow
+  url: "https://zoology.ubc.ca/person/wouter-van-der-bijl"
+role: Research Associate
 social:
 - icon: envelope
   icon_pack: fas
@@ -39,6 +39,6 @@ superuser: false
 title: Wouter van der Bijl
 ---
 
-I am currently working as a post-doctoral researcher in the lab of Judith Mank, at UBC. My current work mainly involves the highly variable color patterns of the Trinidadian Guppy.
+I am currently working as a Research Associate in the lab of Judith Mank, at UBC. I study the evolution of traits using large datasets and computational approaches. My current work focuses on the inheritance and genetic basis of the highly variable color patterns of the Trinidadian Guppy.
 
 Previously, I worked in the lab of Chris Wheat on butterfly coloration. Before that, I was a PhD student with Niclas Kolm studying the function and evolution of brain size. For my thesis I performed experiments on brain size in guppies, and performed comparative analyses on the same topic.
