@@ -19,9 +19,9 @@ publication_types:
   - "2"
 publishDate: "2023-07-13T00:00:00"
 slides: 
-  summary: 
+summary: 
   
-  title: "Extensive variation in germline de novo mutations in Poecilia reticulata"
+title: "Extensive variation in germline de novo mutations in Poecilia reticulata"
 url_code: ""
 url_dataset: ""
 url_pdf: "https://genome.cshlp.org/content/33/8/1317.full.pdf+html"
