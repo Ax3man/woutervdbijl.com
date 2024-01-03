@@ -4,7 +4,7 @@ author_notes: ""
 authors:
   - James T. Thorson
   - Wouter van der Bijl
-date: "2023-01-01T00:00:00"
+date: "2023-10-09T00:00:00"
 doi: "10.1111/jeb.14234"
 featured: true
 image:
@@ -20,7 +20,7 @@ publication: 'In *Journal of Evolutionary Biology*.'
 publication_short: "In *J Evol Biol*"
 publication_types:
   - "2"
-publishDate: "2023-01-01T00:00:00"
+publishDate: "2023-10-09T00:00:00"
 slides: 
 summary: 
 
