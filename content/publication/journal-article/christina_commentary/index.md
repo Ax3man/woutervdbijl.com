@@ -26,6 +26,6 @@ url_pdf: "https://link.springer.com/content/pdf/10.3758/s13420-022-00544-2.pdf"
 url_poster: ""
 url_project: ""
 url_slides: ""
-url_source: "https://doi.org/10.3758/s13420-022-00544-2"
+url_source: ""
 url_video: ""
 ---
