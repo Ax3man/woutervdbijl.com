@@ -4,9 +4,9 @@ abstract: The extraordinary variation in male guppy coloration has been a powerf
 author_notes: ""
 authors:
   - Wouter van der Bijl
-  - Jacelyn Shu
-  - Versara Goberdhan
-  - Linley Sherin
+  - Jacelyn J. Shu
+  - Versara S. Goberdhan
+  - Linley M. Sherin
   - Maria Cortazar-Chinarro
   - Alberto Corral-Lopez
   - Judith E. Mank
@@ -25,14 +25,14 @@ publication: 'On *BioRxiv*.'
 publication_short: "On *BioRxiv*"
 publication_types:
   - "2"
-publishDate: "2023-09-30T00:00:00"
+publishDate: "2024-01-23T00:00:00"
 slides: 
 summary: 
 
 title: "Deep learning reveals the role of copy number variation in the genetic architecture of a highly polymorphic sexual trait"
 url_code: "https://github.com/Ax3man/vdBijl_etal_2024_GuppyColorPatterns"
 url_dataset: ""
-url_pdf: "https://www.biorxiv.org/content/10.1101/2023.09.29.560175v1.full.pdf"
+url_pdf: "https://www.biorxiv.org/content/10.1101/2023.09.29.560175v2.full.pdf"
 url_poster: ""
 url_project: ""
 url_slides: ""
