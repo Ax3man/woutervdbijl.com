@@ -23,7 +23,7 @@ publishDate: "2025-11-15T00:00:00Z"
 slides:
   summary:
 
-  title: "Social interaction with females modulates context-dependent male guppy mating tactics for female receptivity"
+title: "Social interaction with females modulates context-dependent male guppy mating tactics for female receptivity"
 url_code: ""
 url_dataset: ""
 url_pdf: ""
