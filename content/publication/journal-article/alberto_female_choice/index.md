@@ -4,7 +4,7 @@ author_notes: ""
 authors:
   - Alberto Corral-López
   - Natasha I. Bloch
-  - Wouter
+  - Wouter van der Bijl
   - Severine D. Buechel
   - Judith E. Mank
   - Niclas Kolm
