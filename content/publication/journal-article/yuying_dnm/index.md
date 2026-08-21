@@ -5,7 +5,7 @@ author_notes: ""
 authors:
 - Yuying Lin
 - Iulia Darolti
-- Wouter van der Bijl
+- Wouter
 - Jake Morris
 - Judith E. Mank
 date: "2023-07-13T00:00:00"

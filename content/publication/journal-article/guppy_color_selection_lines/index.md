@@ -3,13 +3,13 @@ abstract: The extraordinary variation in male guppy (Poecilia reticulata) colour
 
 author_notes: ""
 authors:
-  - Wouter van der Bijl
+  - Wouter
   - Jacelyn J. Shu
   - Versara S. Goberdhan
   - Linley M. Sherin
   - Changfu Jia
   - Maria Cortazar-Chinarro
-  - Alberto Corral-Lopez
+  - Alberto Corral-López
   - Judith E. Mank
 date: "2025-07-01T00:00:00"
 doi: "10.1038/s41559-025-02781-w"

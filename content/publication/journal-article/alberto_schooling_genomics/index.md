@@ -3,18 +3,18 @@ abstract: The organization and coordination of fish schools provide a valuable m
 
 author_notes: ""
 authors:
-  - Alberto Corral-Lopez
+  - Alberto Corral-López
   - Natasha I. Bloch
-  - Wouter van der Bijl
+  - Wouter
   - Maria Cortazar-Chinarro
   - Alexander Szorkovszky
   - Alexander Kotrschal
   - Iulia Darolti
-  - Severine D. Buechel
+  - Séverine D. Buechel
   - Maksym Romenskyy
   - Niclas Kolm
   - Judith E. Mank
-date: "2023-01-01T00:00:00"
+date: "2024-01-01T00:00:00"
 doi: "10.1038/s41559-023-02249-9"
 featured: false
 
@@ -23,11 +23,11 @@ publication: 'In *Nature Ecology & Evolution*.'
 publication_short: "In *Nat Ecol Evol*"
 publication_types:
   - "2"
-publishDate: "2023-01-01T00:00:00"
+publishDate: "2024-01-01T00:00:00"
 slides: 
 summary: 
 
-title: "Functional convergence of genomic and transcriptomic architecture underlies schooling behaviour in a live-bearing fish "
+title: "Functional convergence of genomic and transcriptomic architecture underlies schooling behaviour in a live-bearing fish"
 url_code: ""
 url_dataset: ""
 url_pdf: "https://edepot.wur.nl/643521"

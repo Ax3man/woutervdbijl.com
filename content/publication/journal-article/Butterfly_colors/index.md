@@ -3,7 +3,7 @@ abstract: Sexual dimorphism is typically thought to result from sexual selection
 
 author_notes: ""
 authors:
-  - Wouter van der Bijl
+  - Wouter
   - Dirk Zeuss
   - Nicolas Chazot
   - Kalle Tunström
@@ -12,7 +12,7 @@ authors:
   - John L. Fitzpatrick
   - Christopher W. Wheat
 date: "2020-10-23T00:00:00"
-doi: ""
+doi: "10.1002/evl3.199"
 featured: true
 image:
   placement: 1

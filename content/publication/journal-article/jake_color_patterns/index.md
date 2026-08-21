@@ -8,10 +8,10 @@ authors:
   - Judith E. Mank
 
 date: "2020-10-21T00:00:00"
-doi: ""
+doi: "10.1098/rspb.2020.1677"
 featured: false
 image:
-  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/jdD8gXaTZsc)'
+  caption: ""
 focal_point: ""
 preview_only: false
 projects: []

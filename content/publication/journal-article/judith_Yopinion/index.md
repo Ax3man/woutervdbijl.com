@@ -3,8 +3,8 @@ abstract: Recent methodological approaches have expanded our understanding of Y 
 
 author_notes: ""
 authors:
-- Wouter van der Bijl
-- Judith Mank
+- Wouter
+- Judith E. Mank
 date: "2025-04-01T00:00:00"
 doi: "10.1093/evlett/qrae065"
 featured: false

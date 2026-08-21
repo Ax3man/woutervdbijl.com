@@ -6,13 +6,13 @@ authors:
   - Pedro Almeida
   - Iulia Darolti
   - Benjamin L. S. Furman
-  - Wouter van der Bijl
+  - Wouter
   - Jake Morris
   - Godfrey R. Bourne
   - Felix Breden
   - Judith E. Mank 
 date: "2021-05-06T00:00:00"
-doi: ""
+doi: "10.1038/s41559-021-01452-w"
 featured: false
 image:
   placement: 1
@@ -25,7 +25,7 @@ focal_point: ""
 preview_only: false
 projects: []
 publication: 'In *Nature Ecology & Evolution*.'
-publication_short: "In *Nat Eco Evo*"
+publication_short: "In *Nat Ecol Evol*"
 publication_types:
   - "2"
 publishDate: "2021-05-06T00:00:00"

@@ -3,7 +3,7 @@ abstract: Phylogenetic comparative methods (PCMs) can be used to study evolution
 author_notes: ""
 authors:
   - James T. Thorson
-  - Wouter van der Bijl
+  - Wouter
 date: "2023-10-09T00:00:00"
 doi: "10.1111/jeb.14234"
 featured: true

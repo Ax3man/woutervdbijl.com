@@ -3,20 +3,20 @@ abstract:
 author_notes: ""
 authors:
   - Masahito Tsuboi
-  - Wouter van der Bijl
+  - Wouter
   - Bjørn Tore Kopperud
   - Johannes Erritzøe
   - Kjetil L. Voje
   - Alexander Kotrschal
   - Kara E. Yopak
   - Shaun P. Collin
-  - Andrew Iwaniuk
-  - Niclas Kolm 
+  - Andrew N. Iwaniuk
+  - Niclas Kolm
 date: "2019-09-23T00:00:00"
-doi: ""
+doi: "10.1038/s41559-019-0986-z"
 featured: false
 image:
-  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/jdD8gXaTZsc)'
+  caption: ""
 focal_point: ""
 preview_only: false
 projects: []
@@ -31,7 +31,7 @@ summary:
 title: "Reply to: Comparisons of static brain–body allometries across vertebrates must distinguish between indeterminate and determinate growth"
 url_code: ""
 url_dataset: ""
-#url_pdf: http://advances.sciencemag.org/content/advances/3/3/e1601990.full.pdf
+url_pdf: ""
 url_poster: ""
 url_project: ""
 url_slides: ""

@@ -4,7 +4,7 @@ abstract: Comparative analyses of gene birth–death dynamics have the potential
 author_notes: ""
 authors:
   - Hanna Dort
-  - Wouter van der Bijl
+  - Wouter
   - Niklas Wahlberg
   - Sören Nylin
   - Christopher W. Wheat

@@ -3,13 +3,13 @@ abstract: Domesticated animals display suites of altered morphological, behavior
 author_notes: ""
 authors:
   - Christina Hansen Wheat
-  - Wouter van der Bijl
+  - Wouter
   - Christopher W. Wheat
 date: "2020-04-10T00:00:00"
-doi: ""
+doi: "10.1002/evl3.168"
 featured: false
 image:
-  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/jdD8gXaTZsc)'
+  caption: ""
 focal_point: ""
 preview_only: false
 projects: []

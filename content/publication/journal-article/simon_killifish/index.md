@@ -5,16 +5,16 @@ authors:
   - Simon Eckerström-Liedholm
   - Will Sowersby
   - Sergey Morozov
-  - Wouter van der Bijl
+  - Wouter
   - Piotr K. Rowiński
   - Alejandro Gonzalez-Voyer
   - Björn Rogell
 
 date: "2019-10-03T00:00:00"
-doi: ""
+doi: "10.1111/evo.13845"
 featured: false
 image:
-  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/jdD8gXaTZsc)'
+  caption: ""
 focal_point: ""
 preview_only: false
 projects: []

@@ -1,11 +1,11 @@
 ---
-abstract: Animals living in groups can show substantial variation in social traits and this affects their social organization. However, as the specific mechanisms driving this organization are difficult to identify in already organized groups typically found in the wild, the contribution of interindividual variation to group level behaviour remains enigmatic. Here, we present results of an experiment to create and compare groups that vary in social organization, and study how individual behaviour varies between these groups. We iteratively sorted individuals between groups of guppies, Poecilia reticulata, by ranking the groups according to their directional alignment and then mixing similar groups. Over the rounds of sorting the consistency of the group rankings increased, producing groups that varied significantly in key social behaviours such as collective activity and group cohesion. The repeatability of the underlying individual behaviour was then estimated by comparing the experimental data to simulations. At the level of basic locomotion, individuals in more coordinated groups displayed stronger interactions with the centre of the group, and weaker interactions with their nearest neighbours. We propose that this provides the basis for a passive phenotypic assortment mechanism that may explain the structures of social networks in the wild..
+abstract: Animals living in groups can show substantial variation in social traits and this affects their social organization. However, as the specific mechanisms driving this organization are difficult to identify in already organized groups typically found in the wild, the contribution of interindividual variation to group level behaviour remains enigmatic. Here, we present results of an experiment to create and compare groups that vary in social organization, and study how individual behaviour varies between these groups. We iteratively sorted individuals between groups of guppies, Poecilia reticulata, by ranking the groups according to their directional alignment and then mixing similar groups. Over the rounds of sorting the consistency of the group rankings increased, producing groups that varied significantly in key social behaviours such as collective activity and group cohesion. The repeatability of the underlying individual behaviour was then estimated by comparing the experimental data to simulations. At the level of basic locomotion, individuals in more coordinated groups displayed stronger interactions with the centre of the group, and weaker interactions with their nearest neighbours. We propose that this provides the basis for a passive phenotypic assortment mechanism that may explain the structures of social networks in the wild.
 author_notes: ""
 authors:
-  - Alex Szorkovszky
+  - Alexander Szorkovszky
   - Alexander Kotrschal
   - James E. Herbert-Read
-  - Severine D. Buechel
+  - Séverine D. Buechel
   - Maksym Romenskyy
   - Emil Rosén
   - Wouter
@@ -13,15 +13,15 @@ authors:
   - Niclas Kolm
   - David J.T. Sumpter
 date: "2018-08-01T00:00:00"
-doi: ""
+doi: "10.1016/j.anbehav.2018.06.005"
 featured: false
 image:
-  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/jdD8gXaTZsc)'
+  caption: ""
 focal_point: ""
 preview_only: false
 projects: []
-publication: 'In *Animal Behavior*.'
-publication_short: "In *Anim Beh*"
+publication: 'In *Animal Behaviour*.'
+publication_short: "In *Anim Behav*"
 publication_types:
   - "2"
 publishDate: "2018-08-01T00:00:00"

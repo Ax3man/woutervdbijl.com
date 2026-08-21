@@ -1,18 +1,19 @@
 ---
-abstract: It has become increasingly clear that a larger brain can confer cognitive benefits. Yet not all of the numerous aspects of cognition seem to be affected by brain size. Recent evidence suggests that some more basic forms of cognition, for instance colour vision, are not influenced by brain size. We therefore hypothesize that a larger brain is especially beneficial for distinct and gradually more complex aspects of cognition. To test this hypothesis, we assessed the performance of brain size selected female guppies (Poecilia reticulata) in two distinct aspects of cognition that differ in cognitive complexity. In a standard reversal-learning test we first investigated basic learning ability with a colour discrimination test, then reversed the reward contingency to specifically test for cognitive flexibility. We found that large-brained females outperformed small-brained females in the reversed-learning part of the test but not in the colour discrimination part of the test. Large-brained individuals are hence cognitively more flexible, which probably yields fitness benefits, as they may adapt more quickly to social and/or ecological cognitive challenges. Our results also suggest that a larger brain becomes especially advantageous with increasing cognitive complexity. These findings corroborate the significance of brain size for cognitive evolution.
+abstract: Mate choice decisions are central in sexual selection theory aimed to understand how sexual traits evolve and their role in evolutionary diversification. We test the hypothesis that brain size and cognitive ability are important for accurate assessment of partner quality and that variation in brain size and cognitive ability underlies variation in mate choice. We compared sexual preference in guppy female lines selected for divergence in relative brain size, which we have previously shown to have substantial differences in cognitive ability. In a dichotomous choice test, large-brained and wild-type females showed strong preference for males with color traits that predict attractiveness in this species. In contrast, small-brained females showed no preference for males with these traits. In-depth analysis of optomotor response to color cues and gene expression of key opsins in the eye revealed that the observed differences were not due to differences in visual perception of color, indicating that differences in the ability to process indicators of attractiveness are responsible. We thus provide the first experimental support that individual variation in brain size affects mate choice decisions and conclude that differences in cognitive ability may be an important underlying mechanism behind variation in female mate choice.
 author_notes: ""
 authors:
   - Alberto Corral-López
   - Natasha I. Bloch
-  - Wouter van der Bijl
-  - Severine D. Buechel
+  - Alexander Kotrschal
+  - Wouter
+  - Séverine D. Buechel
   - Judith E. Mank
   - Niclas Kolm
 date: "2017-03-22T00:00:00"
-doi: ""
+doi: "10.1126/sciadv.1601990"
 featured: false
 image:
-  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/jdD8gXaTZsc)'
+  caption: ""
 focal_point: ""
 preview_only: false
 projects: []

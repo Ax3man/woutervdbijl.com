@@ -1,5 +1,5 @@
 ---
-abstract: It has become increasingly clear that a larger brain can confer cognitive benefits. Yet not all of the numerous aspects of cognition seem to be affected by brain size. Recent evidence suggests that some more basic forms of cognition, for instance colour vision, are not influenced by brain size. We therefore hypothesize that a larger brain is especially beneficial for distinct and gradually more complex aspects of cognition. To test this hypothesis, we assessed the performance of brain size selected female guppies (Poecilia reticulata) in two distinct aspects of cognition that differ in cognitive complexity. In a standard reversal-learning test we first investigated basic learning ability with a colour discrimination test, then reversed the reward contingency to specifically test for cognitive flexibility. We found that large-brained females outperformed small-brained females in the reversed-learning part of the test but not in the colour discrimination part of the test. Large-brained individuals are hence cognitively more flexible, which probably yields fitness benefits, as they may adapt more quickly to social and/or ecological cognitive challenges. Our results also suggest that a larger brain becomes especially advantageous with increasing cognitive complexity. These findings corroborate the significance of brain size for cognitive evolution.
+abstract: Animal behavior is remarkably variable at all taxonomic levels. Over the last decades, research on animal behavior has focused on understanding ultimate processes. Yet, it has progressively become more evident that to fully understand behavioral variation, ultimate explanations need to be complemented with proximate ones. In particular, the mechanisms generating variation in sexual behavior remain an open question. Variation in aspects of brain morphology has been suggested as a plausible mechanism underlying this variation. However, our knowledge of this potential association is based almost exclusively on comparative analyses. Experimental studies are needed to establish causality and bridge the gap between micro- and macroevolutionary mechanisms concerning the link between brain and sexual behavior. We used male guppies that had been artificially selected for large or small relative brain size to study this association. We paired males with females and scored the full known set of male and female sexual behaviors described in guppies. We found several previously demonstrated associations between male traits, male behavior and female behavior. Females responded more strongly towards males that courted more and males with more orange coloration. Also, larger males and males with less conspicuous coloration attempted more coerced copulations. However, courting, frequency of coerced copulation attempts, total intensity of sexual behavior, and female response did not differ between large- and small-brained males. Our data suggest that relative brain size is an unlikely mechanism underlying variation in sexual behavior of the male guppy. We discuss these findings in the context of the conditions under which relative brain size might affect male sexual behavior.
 author_notes: ""
 authors:
   - Alberto Corral-López
@@ -8,15 +8,15 @@ authors:
   - Alexander Kotrschal
   - Niclas Kolm
 date: "2015-12-01T00:00:00"
-doi: ""
+doi: "10.1093/czoolo/61.2.265"
 featured: false
 image:
-  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/jdD8gXaTZsc)'
+  caption: ""
 focal_point: ""
 preview_only: false
 projects: []
 publication: 'In *Current Zoology*.'
-publication_short: "In *CurrZool*."
+publication_short: "In *Curr Zool*"
 publication_types:
   - "2"
 publishDate: "2015-12-01T00:00:00"

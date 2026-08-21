@@ -3,7 +3,7 @@ abstract: Sexual selection has long been known to produce rapid evolution of spe
 
 author_notes: ""
 authors:
-  - Wouter van der Bijl
+  - Wouter
   - Judith E. Mank
 date: "2023-07-13T00:00:00"
 doi: "10.1016/j.cub.2023.02.074"

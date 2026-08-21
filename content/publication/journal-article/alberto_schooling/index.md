@@ -3,20 +3,20 @@ abstract: One of the most spectacular displays of social behavior is the synchro
 
 author_notes: ""
 authors:
-  - Alberto Corral-Lopez
+  - Alberto Corral-López
   - Alexander Kotrschal
   - Alexander Szorkovszky
   - Maddi Garate-Olaizola
-  - James Herbert-Read
-  - Wouter van der Bijl
+  - James E. Herbert-Read
+  - Wouter
   - Maksym Romenskyy
   - Hong-Li Zeng
-  - Severine D. Buechel
+  - Séverine D. Buechel
   - Ada Fontrodona-Eslava
   - Kristiaan Pelckmans
   - Judith E. Mank
   - Niclas Kolm 
-date: "2023-01-01T00:00:00"
+date: "2023-09-27T00:00:00"
 doi: "10.1038/s41467-023-41635-6"
 featured: false
 
@@ -25,7 +25,7 @@ publication: 'In *Nature Communications*.'
 publication_short: "In *Nat Commun*"
 publication_types:
   - "2"
-publishDate: "2023-01-01T00:00:00"
+publishDate: "2023-09-27T00:00:00"
 slides: 
 summary: 
 
