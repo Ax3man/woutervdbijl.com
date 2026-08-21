@@ -12,7 +12,7 @@ headless: true
 # Order that this section appears on the page.
 weight: 10
 
-title: Wouter van der Bijl
+title: Understanding the evolution of complex phenotypes
 
 # Hero image (optional). Place in `assets/media/`.
 hero_media:
@@ -23,10 +23,10 @@ design:
     image_darken: 0.6
     image_size: cover
     image_position: center
-    image_parallax: true
+    # Parallax sizes the crop against the viewport rather than the banner,
+    # which makes the visible part of the photo depend on window height.
+    image_parallax: false
     text_color_light: true
   spacing:
-    padding: ["6rem", "0", "6rem", "0"]
+    padding: ["3rem", "0", "3rem", "0"]
 ---
-
-Evolution of colour patterns, brains and behaviour.

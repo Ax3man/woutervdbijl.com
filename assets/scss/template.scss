@@ -18,3 +18,21 @@
   -webkit-mask-size: contain;
   mask-size: contain;
 }
+
+// Hero banner height. The background fills the section, and the section is only
+// as tall as its text, so on a wide screen `cover` leaves a thin horizontal
+// sliver of the photo visible. Tying the height to the viewport width keeps the
+// crop roughly proportionate instead, and the text sits centred within it.
+#hero {
+  // Scale with viewport width so the crop stays proportionate, but never let
+  // the banner take more than ~60% of the window height on a short screen.
+  // Quoted so libsass emits CSS `min()` rather than trying its own Sass
+  // `min()`, which rejects mixing vw with vh.
+  min-height: #{"clamp(340px, min(34vw, 60vh), 720px)"};
+  display: flex;
+  align-items: center;
+
+  > .container {
+    width: 100%;
+  }
+}
