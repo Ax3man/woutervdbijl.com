@@ -23,7 +23,7 @@ image:
 focal_point: ""
 projects: []
 publication: 'In *Nature Ecology & Evolution*.'
-publication_short: "In *Nat Eco Evo*"
+publication_short: "In *Nat Ecol Evol*"
 publication_types:
   - "2"
 publishDate: "2025-07-01T00:00:00"

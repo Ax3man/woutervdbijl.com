@@ -16,7 +16,7 @@ focal_point: ""
 preview_only: false
 projects: []
 publication: 'In *Proceedings of the Royal Society B*.'
-publication_short: "In *ProcB*"
+publication_short: "In *Proc R Soc B*"
 publication_types:
   - "2"
 publishDate: "2020-10-21T00:00:00"
