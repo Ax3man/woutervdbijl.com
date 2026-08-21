@@ -5,10 +5,10 @@ image:
   caption: Poecilia picta (by Wouter van der Bijl)
   focal_point: Smart
 links:
-- icon: twitter
+- icon: bluesky
   icon_pack: fab
   name: Follow
-  url: https://twitter.com/_axeman_
+  url: https://bsky.app/profile/vdbijl.bsky.social
 # slides: example
 # summary: An example of using the in-built project page.
 tags:

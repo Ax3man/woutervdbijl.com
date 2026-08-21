@@ -38,10 +38,10 @@ email: wouter@mail.ubc.ca
 #   - 'Wednesday 09:00 to 10:00'
 # appointment_url: 'https://calendly.com'
 contact_links:
-  - icon: twitter
+  - icon: bluesky
     icon_pack: fab
-    name: "@\\_Axeman\\_"
-    link: 'https://twitter.com/_Axeman_'
+    name: "@vdbijl.bsky.social"
+    link: 'https://bsky.app/profile/vdbijl.bsky.social'
   - icon: github
     icon_pack: fab
     name: "@Ax3man"

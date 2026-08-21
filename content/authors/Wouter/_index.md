@@ -27,7 +27,7 @@ social:
 - icon: envelope
   icon_pack: fas
   link: '#contact'
-- icon: twitter
+- icon: bluesky
   icon_pack: fab
   link: https://bsky.app/profile/vdbijl.bsky.social
 - icon: graduation-cap
