@@ -12,7 +12,7 @@ doi: "10.1098/rstb.2025.0313"
 featured: false
 image:
   placement: 1
-  caption: "Figure 5 (by Jacelyn Shu)"
+  caption: 'Figure 5 (by [Jacelyn Shu](https://www.jacelyndesigns.com))'
   focal_point: "Center"
   preview_only: false
   alt_text: Intersexual correlations of dewlap traits between brother and sister Anolis sagrei, with and without developmental testosterone treatment.
