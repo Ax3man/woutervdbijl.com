@@ -5,7 +5,7 @@ authors:
 - Wouter
 date: "2018-04-25T00:00:00"
 doi: "10.7717/peerj.4718"
-featured: true
+featured: false
 image:
   caption: ""
 focal_point: ""
@@ -20,7 +20,10 @@ slides:
   summary:
 
 title: "phylopath: Easy phylogenetic path analysis in R"
-url_code: ""
+url_code: "https://github.com/Ax3man/phylopath"
+links:
+- name: Package website
+  url: "https://ax3man.github.io/phylopath/"
 url_dataset: ""
 url_pdf: "https://peerj.com/articles/4718.pdf"
 url_poster: ""

@@ -40,7 +40,7 @@ superuser: false
 title: Wouter van der Bijl
 ---
 
-I study the evolution of complex traits, such as color patterns, brains and behavior. To that end, I combine large-scale phenotypic and genetic datasets with methodological advances, such as machine learning and statistical modelling.
+I study the evolution of complex traits, such as color patterns, brains and behavior. To that end, I combine large-scale phenotypic and genetic datasets with methodological advances, such as machine learning and statistical modelling. I also develop open-source software, such as the R packages [phylopath](https://ax3man.github.io/phylopath/) for phylogenetic path analysis and [phylosem](https://james-thorson-noaa.github.io/phylosem/) for phylogenetic structural equation models.
 
 I am currently working as a Research Associate in the lab of Judith Mank, at UBC. My current work focuses on the evolution and genetic basis of the highly variable color patterns of the Trinidadian Guppy.
 

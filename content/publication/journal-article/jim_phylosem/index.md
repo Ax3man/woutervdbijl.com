@@ -6,7 +6,7 @@ authors:
   - Wouter
 date: "2023-10-09T00:00:00"
 doi: "10.1111/jeb.14234"
-featured: true
+featured: false
 image:
   placement: 1
   caption: "Figure 2"

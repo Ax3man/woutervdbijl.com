@@ -9,7 +9,7 @@ authors:
 - Judith E. Mank
 date: "2026-04-02T00:00:00"
 doi: "10.1098/rstb.2025.0313"
-featured: false
+featured: true
 image:
   placement: 1
   caption: 'Figure 5 (by [Jacelyn Shu](https://www.jacelyndesigns.com))'
